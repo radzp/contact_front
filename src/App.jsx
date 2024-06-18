@@ -10,6 +10,7 @@ import {ToastContainer} from 'react-toastify';
 import {AuthProvider} from "./middleware/AuthContext.jsx";
 import ProtectedRoute from "./middleware/ProtectedRoute.jsx";
 import LoginSignup from "./components/loginSignup/LoginSignup.jsx";
+import axios from "axios";
 
 function App() {
     // Refs for modal and file input elements
@@ -91,6 +92,19 @@ function App() {
         }
     };
 
+
+    const handleLogout = async () => {
+        try {
+            await axios.post('http://localhost:8080/logout', {}, {withCredentials: true});
+            navigate('/login');
+        } catch (error) {
+            console.log(error);
+            toastError(error.message);
+        }
+    }
+
+
+
     const toggleModal = show => show ? modalRef.current.showModal() : modalRef.current.close();
 
     useEffect(() => {
@@ -99,7 +113,7 @@ function App() {
 
     return (
         <AuthProvider>
-            {location.pathname !== '/login' && <Header toggleModal={toggleModal} nbOfContacts={data.totalElements}/>}
+            {location.pathname !== '/login' && <Header toggleModal={toggleModal} nbOfContacts={data.totalElements} handleLogout={handleLogout} />}
             <main className='main'>
                 <div className={location.pathname !== '/login' ? 'container' : ''}>
                     <Routes>
@@ -148,7 +162,10 @@ function App() {
                             </div>
                             <div className="input-box">
                                 <span className="details">Account Status</span>
-                                <input type="text" value={values.status} onChange={onChange} name='status' required/>
+                                <select value={values.status} onChange={onChange} name='status' required>
+                                    <option value="Active">Active</option>
+                                    <option value="Inactive">Inactive</option>
+                                </select>
                             </div>
                             <div className="file-input">
                                 <span className="details">Profile Photo</span>

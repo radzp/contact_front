@@ -126,7 +126,7 @@
 
 body {
   font-family: var(--ff-poppins);
-  background-color: var(--white);
+  background-color: #d5e8f1;
   line-height: var(--lh-1);
   -webkit-font-smoothing: antialiased;
 }
@@ -210,7 +210,7 @@ i {
 
 .btn {
   color: var(--white);
-  background-color: var(--selective-blue);
+  background-color: #2a6665;
   font-size: .8rem;
   padding: 3px 10px;
   white-space: normal;
@@ -224,7 +224,7 @@ i {
 }
 
 .btn:hover {
-  background-color: var(--selective-blue-3);
+  background-color: #2a6665;
 }
 
 .btn-danger:hover {
@@ -254,7 +254,7 @@ i {
 
 .contact__item {
   width: 100%;
-  background-color: #ecf1f1;
+  background-color: #b8ccd9;
   padding: .88rem;
   border-radius: var(--radius-5);
   cursor: pointer;
@@ -277,7 +277,7 @@ i {
 
 .contact__image img {
   width: 100%;
-  border: 3px solid var(--selective-blue);
+  border: 3px solid #2a6665;
   aspect-ratio: 1 / 1;
   object-fit: cover;
   object-position: center;
@@ -357,9 +357,9 @@ i {
 }
 
 .pagination a.active {
-  background-color: var(--selective-blue);
+  background-color: #2a6665;
   color: white;
-  border: 1px solid var(--selective-blue);
+  border: 1px solid #2a6665;
 }
 
 .pagination a:hover:not(.active) {
@@ -384,7 +384,7 @@ i {
   align-items: center;
   flex-wrap: wrap;
   gap: 1rem;
-  background-color: #ecf1f1;
+  background-color: #b8ccd9;
   padding: 10px;
   border-radius: var(--radius-5);
 }
@@ -392,7 +392,7 @@ i {
 .profile__details img {
   width: 120px;
   border-radius: var(--radius-5);
-  border: 3px solid var(--selective-blue);
+  border: 3px solid #2a6665;
   aspect-ratio: 1 / 1;
   object-fit: cover;
   object-position: center;
@@ -412,7 +412,7 @@ i {
 }
 
 .profile__settings {
-  background-color: #ecf1f1;
+  background-color: #b8ccd9;
   padding: 10px;
   border-radius: var(--radius-5);
 }

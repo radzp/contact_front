@@ -34,9 +34,9 @@ const ContactDetail = ({ updateContact, updateImage, getAllContacts}) => {
     const onDeleteContact = async (event) => {
         event.preventDefault();
         try {
-            await deleteContact(id); // Wywołaj funkcję deleteContact z id kontaktu
+            await deleteContact(id);
             toastSuccess('Contact Deleted');
-            navigate('/contacts'); // Przekieruj do listy kontaktów
+            navigate('/contacts');
             getAllContacts();
         } catch (error) {
             console.log(error);
@@ -89,7 +89,7 @@ const ContactDetail = ({ updateContact, updateImage, getAllContacts}) => {
                     <img src={contact.photoUrl} alt={`Profile photo of ${contact.name}`} />
                     <div className='profile__metadata'>
                         <p className='profile__name'>{contact.name}</p>
-                        <p className='profile__muted'>JPG, GIF, or PNG. Max size of 10 MG</p>
+                        <p className='profile__muted'>JPG or PNG. Max size of 10 MB</p>
                         <button onClick={selectImage} className='btn'><i className='bi bi-cloud-upload'></i> Change Photo</button>
                     </div>
                 </div>
@@ -120,7 +120,10 @@ const ContactDetail = ({ updateContact, updateImage, getAllContacts}) => {
                                 </div>
                                 <div className="input-box">
                                     <span className="details">Status</span>
-                                    <input type="text" value={contact.status} onChange={onChange} name="status" required />
+                                    <select value={contact.status} onChange={onChange} name="status" required>
+                                        <option value="Active">Active</option>
+                                        <option value="Inactive">Inactive</option>
+                                    </select>
                                 </div>
                             </div>
                             <div className="form_footer">

@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Header = ({toggleModal, nbOfContacts}) => {
+const Header = ({toggleModal, nbOfContacts, handleLogout}) => {
     return (
         <header className="header">
             <div className='container'>
@@ -9,6 +9,9 @@ const Header = ({toggleModal, nbOfContacts}) => {
                 </h3>
                 <button onClick={() => toggleModal(true)} className='btn'>
                     <i className='bi bi-plus-square'></i> Add new contact
+                </button>
+                <button onClick={handleLogout} className='btn'>
+                    <i className='bi bi-box-arrow-right'></i> Logout
                 </button>
             </div>
         </header>
