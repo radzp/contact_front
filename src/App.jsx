@@ -2,7 +2,7 @@ import {useEffect, useRef, useState} from 'react';
 import 'react-toastify/dist/ReactToastify.css';
 import Header from './components/Header'
 import ContactList from './components/ContactList'
-import { getContacts, saveContact, udpatePhoto} from './api/ContactService';
+import {getContacts, saveContact, udpateContact, udpatePhoto} from './api/ContactService';
 import {Routes, Route, Navigate, useLocation, useNavigate} from 'react-router-dom';
 import ContactDetail from './components/ContactDetail';
 import {toastError} from './api/ToastService';
@@ -74,7 +74,7 @@ function App() {
 
     const updateContact = async (contact) => {
         try {
-            const {data} = await saveContact(contact);
+            const {data} = await udpateContact(contact);
             console.log(data);
         } catch (error) {
             console.log(error);

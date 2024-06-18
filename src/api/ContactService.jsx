@@ -1,5 +1,7 @@
 import axios from "axios";
 
+// domyślnie axios nie przesyła ciasteczek, więc trzeba ustawić tę opcję
+axios.defaults.withCredentials = true;
 const API_URL = 'http://localhost:8080/contacts';
 
 export async function saveContact(contact) {
