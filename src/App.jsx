@@ -141,7 +141,8 @@ function App() {
                         <div className="user-details">
                             <div className="input-box">
                                 <span className="details">Name</span>
-                                <input type="text" value={values.name} onChange={onChange} name='name' required/>
+                                <input type="text" value={values.name} onChange={onChange} name='name' required
+                                       pattern="[A-Z][a-z]*\s[A-Z][a-z]*"/>
                             </div>
                             <div className="input-box">
                                 <span className="details">Email</span>

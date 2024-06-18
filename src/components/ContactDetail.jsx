@@ -1,9 +1,9 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import {Link, useNavigate, useParams} from 'react-router-dom';
 import {deleteContact, getContact} from '../api/ContactService';
-import { toastError, toastSuccess } from '../api/ToastService';
+import {toastError, toastSuccess} from '../api/ToastService';
 
-const ContactDetail = ({ updateContact, updateImage, getAllContacts}) => {
+const ContactDetail = ({updateContact, updateImage, getAllContacts}) => {
     const inputRef = useRef();
     const [contact, setContact] = useState({
         id: '',
@@ -17,11 +17,11 @@ const ContactDetail = ({ updateContact, updateImage, getAllContacts}) => {
     });
     let navigate = useNavigate();
 
-    const { id } = useParams();
+    const {id} = useParams();
 
     const fetchContact = async (id) => {
         try {
-            const { data } = await getContact(id);
+            const {data} = await getContact(id);
             setContact(data);
             console.log(data);
             //toastSuccess('Contact retrieved');
@@ -45,7 +45,6 @@ const ContactDetail = ({ updateContact, updateImage, getAllContacts}) => {
     };
 
 
-
     const selectImage = () => {
         inputRef.current.click();
     };
@@ -56,7 +55,7 @@ const ContactDetail = ({ updateContact, updateImage, getAllContacts}) => {
             formData.append('file', file, file.name);
             formData.append('id', id);
             await updateImage(formData);
-            setContact((prev) => ({ ...prev, photoUrl: `${prev.photoUrl}?updated_at=${new Date().getTime()}` }));
+            setContact((prev) => ({...prev, photoUrl: `${prev.photoUrl}?updated_at=${new Date().getTime()}`}));
             toastSuccess('Photo updated');
         } catch (error) {
             console.log(error);
@@ -65,7 +64,7 @@ const ContactDetail = ({ updateContact, updateImage, getAllContacts}) => {
     };
 
     const onChange = (event) => {
-        setContact({ ...contact, [event.target.name]: event.target.value });
+        setContact({...contact, [event.target.name]: event.target.value});
     };
 
     const onUpdateContact = async (event) => {
@@ -86,11 +85,13 @@ const ContactDetail = ({ updateContact, updateImage, getAllContacts}) => {
             <Link to={'/contacts'} className='link'><i className='bi bi-arrow-left'></i> Back to list</Link>
             <div className='profile'>
                 <div className='profile__details'>
-                    <img src={contact.photoUrl} alt={`Profile photo of ${contact.name}`} />
+                    <img src={contact.photoUrl} alt={`Profile photo of ${contact.name}`}/>
                     <div className='profile__metadata'>
                         <p className='profile__name'>{contact.name}</p>
                         <p className='profile__muted'>JPG or PNG. Max size of 10 MB</p>
-                        <button onClick={selectImage} className='btn'><i className='bi bi-cloud-upload'></i> Change Photo</button>
+                        <button onClick={selectImage} className='btn'><i className='bi bi-cloud-upload'></i> Change
+                            Photo
+                        </button>
                     </div>
                 </div>
                 <div className='profile__settings'>
@@ -100,7 +101,8 @@ const ContactDetail = ({ updateContact, updateImage, getAllContacts}) => {
                                 <input type="hidden" defaultValue={contact.id} name="id" required/>
                                 <div className="input-box">
                                     <span className="details">Name</span>
-                                    <input type="text" value={contact.name} onChange={onChange} name="name" required/>
+                                    <input type="text" value={contact.name} onChange={onChange} name="name" required
+                                           pattern="[A-Z][a-z]*\s[A-Z][a-z]*"/>
                                 </div>
                                 <div className="input-box">
                                     <span className="details">Email</span>
