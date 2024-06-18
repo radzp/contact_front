@@ -71,8 +71,10 @@ const ContactDetail = ({ updateContact, updateImage, getAllContacts}) => {
     const onUpdateContact = async (event) => {
         event.preventDefault();
         await updateContact(contact);
-        fetchContact(id);
+        await fetchContact(id);
         toastSuccess('Contact Updated');
+        navigate('/contacts')
+        getAllContacts();
     };
 
     useEffect(() => {
