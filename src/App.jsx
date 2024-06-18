@@ -2,10 +2,10 @@ import {useEffect, useRef, useState} from 'react';
 import 'react-toastify/dist/ReactToastify.css';
 import Header from './components/Header'
 import ContactList from './components/ContactList'
-import {deleteContact, getContacts, saveContact, udpatePhoto} from './api/ContactService';
+import { getContacts, saveContact, udpatePhoto} from './api/ContactService';
 import {Routes, Route, Navigate, useLocation, useNavigate} from 'react-router-dom';
 import ContactDetail from './components/ContactDetail';
-import {toastError, toastSuccess} from './api/ToastService';
+import {toastError} from './api/ToastService';
 import {ToastContainer} from 'react-toastify';
 import {AuthProvider} from "./middleware/AuthContext.jsx";
 import ProtectedRoute from "./middleware/ProtectedRoute.jsx";
@@ -13,7 +13,6 @@ import LoginSignup from "./components/loginSignup/LoginSignup.jsx";
 import axios from "axios";
 
 function App() {
-    // Refs for modal and file input elements
     const modalRef = useRef();
     const fileRef = useRef();
     const [data, setData] = useState({});
@@ -25,7 +24,7 @@ function App() {
         phone: '',
         address: '',
         title: '',
-        status: '',
+        status: 'Active',
     });
     const location = useLocation();
     let navigate = useNavigate();
@@ -63,7 +62,7 @@ function App() {
                 phone: '',
                 address: '',
                 title: '',
-                status: '',
+                status: 'Active',
             })
             getAllContacts();
         } catch (error) {
@@ -146,7 +145,8 @@ function App() {
                             </div>
                             <div className="input-box">
                                 <span className="details">Email</span>
-                                <input type="text" value={values.email} onChange={onChange} name='email' required/>
+                                <input type="email" value={values.email} onChange={onChange} name='email' required
+                                       pattern="\S+@\S+\.\S+"/>
                             </div>
                             <div className="input-box">
                                 <span className="details">Title</span>
@@ -154,7 +154,8 @@ function App() {
                             </div>
                             <div className="input-box">
                                 <span className="details">Phone Number</span>
-                                <input type="text" value={values.phone} onChange={onChange} name='phone' required/>
+                                <input type="tel" value={values.phone} onChange={onChange} name='phone' required
+                                       pattern="[0-9]{9}"/>
                             </div>
                             <div className="input-box">
                                 <span className="details">Address</span>
@@ -163,14 +164,14 @@ function App() {
                             <div className="input-box">
                                 <span className="details">Account Status</span>
                                 <select value={values.status} onChange={onChange} name='status' required>
-                                    <option value="Active">Active</option>
+                                    <option value="Active" >Active</option>
                                     <option value="Inactive">Inactive</option>
                                 </select>
                             </div>
                             <div className="file-input">
                                 <span className="details">Profile Photo</span>
                                 <input type="file" onChange={(event) => setFile(event.target.files[0])} ref={fileRef}
-                                       name='photo' required/>
+                                       name='photo' required accept=".jpg,.jpeg,.png"/>
                             </div>
                         </div>
                         <div className="form_footer">

@@ -79,7 +79,7 @@ const LoginSignup = () => {
             })
             .catch(error => {
                 console.log(error);
-                setMessage(`Login failed due to: ${error.response.data.message}`);
+                setMessage(`Login failed due to: ${error.message}`);
                 setIsSuccessful(false);
                 setIsLoading(false);
             });

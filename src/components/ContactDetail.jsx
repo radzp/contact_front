@@ -97,26 +97,29 @@ const ContactDetail = ({ updateContact, updateImage, getAllContacts}) => {
                     <div>
                         <form onSubmit={onUpdateContact} className="form">
                             <div className="user-details">
-                                <input type="hidden" defaultValue={contact.id} name="id" required />
+                                <input type="hidden" defaultValue={contact.id} name="id" required/>
                                 <div className="input-box">
                                     <span className="details">Name</span>
-                                    <input type="text" value={contact.name} onChange={onChange} name="name" required />
+                                    <input type="text" value={contact.name} onChange={onChange} name="name" required/>
                                 </div>
                                 <div className="input-box">
                                     <span className="details">Email</span>
-                                    <input type="text" value={contact.email} onChange={onChange} name="email" required />
+                                    <input type="email" value={contact.email} onChange={onChange} name="email" required
+                                           pattern="\S+@\S+\.\S+"/>
                                 </div>
                                 <div className="input-box">
                                     <span className="details">Phone</span>
-                                    <input type="text" value={contact.phone} onChange={onChange} name="phone" required />
+                                    <input type="tel" value={contact.phone} onChange={onChange} name="phone" required
+                                           pattern="[0-9]{9}"/>
                                 </div>
                                 <div className="input-box">
                                     <span className="details">Address</span>
-                                    <input type="text" value={contact.address} onChange={onChange} name="address" required />
+                                    <input type="text" value={contact.address} onChange={onChange} name="address"
+                                           required/>
                                 </div>
                                 <div className="input-box">
                                     <span className="details">Title</span>
-                                    <input type="text" value={contact.title} onChange={onChange} name="title" required />
+                                    <input type="text" value={contact.title} onChange={onChange} name="title" required/>
                                 </div>
                                 <div className="input-box">
                                     <span className="details">Status</span>
@@ -135,8 +138,9 @@ const ContactDetail = ({ updateContact, updateImage, getAllContacts}) => {
                 </div>
             </div>
 
-            <form style={{ display: 'none' }}>
-                <input type='file' ref={inputRef} onChange={(event) => udpatePhoto(event.target.files[0])} name='file' accept='image/*' />
+            <form style={{display: 'none'}}>
+                <input type='file' ref={inputRef} onChange={(event) => udpatePhoto(event.target.files[0])} name='file'
+                       accept='image/*'/>
             </form>
         </>
     )

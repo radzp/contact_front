@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from "react-router-dom";
 
-const Contact = ({ contact}) => {
+const Contact = ({ contact }) => {
     return (
         <Link to={`/contacts/${contact.id}`} className="contact__item">
             <div className="contact__header">
