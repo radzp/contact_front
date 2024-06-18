@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Link, useParams } from 'react-router-dom';
-import { getContact } from '../api/ContactService';
+import {Link, useNavigate, useParams} from 'react-router-dom';
+import {deleteContact, getContact} from '../api/ContactService';
 import { toastError, toastSuccess } from '../api/ToastService';
 
-const ContactDetail = ({ updateContact, updateImage }) => {
+const ContactDetail = ({ updateContact, updateImage, getAllContacts}) => {
     const inputRef = useRef();
     const [contact, setContact] = useState({
         id: '',
@@ -15,6 +15,7 @@ const ContactDetail = ({ updateContact, updateImage }) => {
         status: '',
         photoUrl: ''
     });
+    let navigate = useNavigate();
 
     const { id } = useParams();
 
@@ -29,6 +30,21 @@ const ContactDetail = ({ updateContact, updateImage }) => {
             toastError(error.message);
         }
     };
+
+    const onDeleteContact = async (event) => {
+        event.preventDefault();
+        try {
+            await deleteContact(id); // Wywołaj funkcję deleteContact z id kontaktu
+            toastSuccess('Contact Deleted');
+            navigate('/contacts'); // Przekieruj do listy kontaktów
+            getAllContacts();
+        } catch (error) {
+            console.log(error);
+            toastError(error.message);
+        }
+    };
+
+
 
     const selectImage = () => {
         inputRef.current.click();
@@ -106,6 +122,7 @@ const ContactDetail = ({ updateContact, updateImage }) => {
                                 </div>
                             </div>
                             <div className="form_footer">
+                                <button onClick={onDeleteContact} className="btn btn-danger">Delete</button>
                                 <button type="submit" className="btn">Save</button>
                             </div>
                         </form>
